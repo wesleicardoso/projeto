@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/filme.css">
+  <title>Filmes</title>
+</head>
+<body>
+   
+  
+
+<div class="categorias">
+    <h2>Categorias</h2>
+    <div>
+      <input type="text" id="inputBusca" placeholder="Buscar filmes..." oninput="buscarFilmes()">
+    </div>
+    <ul id="categorias"></ul>
+  </div>
+
+  <div class="filmes">
+    
+    <h2>Filmes</h2>
+    
+    <ul id="filmes"></ul>
+  </div>
+
+  <div class="voltar">
+    <button class="voltar-btn"><a href="../index.html"><</a></button>
+  </div>
+  
+
+  <script src="../javascript/backEnd/modulo_filmes_data.js"></script>
+<script src="../javascript/frontEnd/modulo_interacao_filmes.js"></script>
+</body>
+
+</html>

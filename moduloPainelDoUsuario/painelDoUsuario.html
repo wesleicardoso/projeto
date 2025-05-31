@@ -1,0 +1,233 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../css/painelDeUsuario.css">
+<title>Painel do Usuario</title>
+
+</head>
+<body>
+
+<nav class="sidebar">
+  <h2>Area do Cliente</h2>
+  <button id="btn-clientes" class="active">Editar Dados Cliente</button>
+  <button id="btn-listas">Gerenciar Listas</button>
+  <button id="btn-mais">Mais...</button>
+</nav>
+
+<main class="content">
+
+  <!-- Editar Dados Cliente -->
+  <section id="section-clientes">
+    <h1>Editar Dados do Cliente</h1>
+    <form id="formCliente">
+      <label for="nomeCliente">Nome:</label>
+      <input type="text" id="nomeCliente" required />
+
+      <label for="emailCliente">Email:</label>
+      <input type="email" id="emailCliente" required />
+
+      <button type="submit">Salvar</button>
+    </form>
+    <div id="msgCliente" style="margin-top:15px; color: #4caf50;"></div>
+  </section>
+
+  <!-- Gerenciar Listas -->
+  <section id="section-listas" style="display:none;">
+    <h1>Gerenciar Listas IPTV</h1>
+    <button id="btnAddLista" style="margin-bottom: 15px; background:#ff3333; color:#fff; border:none; padding: 10px 15px; border-radius:6px; cursor:pointer;">Adicionar Lista</button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome da Lista</th>
+          <th>URL da Lista</th>
+          <th>Ações</th>
+          </tr>
+      </thead>
+      <tbody id="listasTabelaBody">
+        <!-- Linhas geradas via JS -->
+      </tbody>
+    </table>
+
+    <!-- Modal simples para adicionar/editar lista -->
+    <div id="modalLista" style="display:none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); align-items: center; justify-content: center;">
+      <div style="background:#222; padding: 20px; border-radius: 8px; width: 320px; color:#eee;">
+        <h3 id="modalTitulo">Adicionar Lista</h3>
+        <form id="formLista">
+          <input type="hidden" id="listaId" />
+          <label for="nomeLista">Nome da Lista:</label>
+          <input type="text" id="nomeLista" required />
+          <label for="urlLista">URL da Lista:</label>
+          <input type="text" id="urlLista" required />
+          <div style="text-align: right; margin-top: 15px;">
+            <button type="button" id="btnCancelarLista" style="margin-right:10px; background:#555;">Cancelar</button>
+            <button type="submit" style="background:#ff3333; color:#fff;">Salvar</button>
+          </div>
+        </form>
+      </div>x
+    </div>
+  </section>
+
+  <!-- Mais... (exemplo) -->
+  <section id="section-mais" style="display:none;">
+    <h1>Mais Opções</h1>
+    <p>Aqui você pode adicionar outras funcionalidades, estatísticas, relatórios etc.</p>
+  </section>
+
+</main>
+
+<script>
+  // Navegação simples
+  const btnClientes = document.getElementById('btn-clientes');
+  const btnListas = document.getElementById('btn-listas');
+  const btnMais = document.getElementById('btn-mais');
+
+  const sectionClientes = document.getElementById('section-clientes');
+  const sectionListas = document.getElementById('section-listas');
+  const sectionMais = document.getElementById('section-mais');
+
+  function setActiveButton(btn) {
+    [btnClientes, btnListas, btnMais].forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  btnClientes.onclick = () => {
+    setActiveButton(btnClientes);
+    sectionClientes.style.display = 'block';
+    sectionListas.style.display = 'none';
+    sectionMais.style.display = 'none';
+  };
+  btnListas.onclick = () => {
+    setActiveButton(btnListas);
+    sectionClientes.style.display = 'none';
+    sectionListas.style.display = 'block';
+    sectionMais.style.display = 'none';
+    carregarListas();
+  };
+  btnMais.onclick = () => {
+    setActiveButton(btnMais);
+    sectionClientes.style.display = 'none';
+    sectionListas.style.display = 'none';
+    sectionMais.style.display = 'block';
+  };
+
+  // Simulação armazenamento local para cliente e listas
+  let dadosCliente = {
+    nome: 'Cliente Exemplo',
+    email: 'cliente@exemplo.com'
+  };
+  let listas = [
+    { id: 1, nome: 'Lista 1', url: 'http://exemplo.com/lista1.m3u' },
+    { id: 2, nome: 'Lista 2', url: 'http://exemplo.com/lista2.m3u' }
+  ];
+
+  // Carregar dados cliente no form
+  const formCliente = document.getElementById('formCliente');
+  const nomeClienteInput = document.getElementById('nomeCliente');
+  const emailClienteInput = document.getElementById('emailCliente');
+  const msgCliente = document.getElementById('msgCliente');
+
+  function carregarDadosCliente() {
+    nomeClienteInput.value = dadosCliente.nome;
+    emailClienteInput.value = dadosCliente.email;
+  }
+  carregarDadosCliente();
+
+  formCliente.addEventListener('submit', e => {
+    e.preventDefault();
+    dadosCliente.nome = nomeClienteInput.value.trim();
+    dadosCliente.email = emailClienteInput.value.trim();
+    msgCliente.textContent = 'Dados salvos com sucesso!';
+    setTimeout(() => { msgCliente.textContent = ''; }, 3000);
+  });
+
+  // Gerenciar listas IPTV
+  const listasTabelaBody = document.getElementById('listasTabelaBody');
+  const modalLista = document.getElementById('modalLista');
+  const formLista = document.getElementById('formLista');
+  const listaIdInput = document.getElementById('listaId');
+  const nomeListaInput = document.getElementById('nomeLista');
+  const urlListaInput = document.getElementById('urlLista');
+  const btnAddLista = document.getElementById('btnAddLista');
+  const btnCancelarLista = document.getElementById('btnCancelarLista');
+
+  function carregarListas() {
+    listasTabelaBody.innerHTML = '';
+    listas.forEach(lista => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${lista.id}</td>
+        <td>${lista.nome}</td>
+        <td><a href="${lista.url}" target="_blank" style="color:#ff3333; text-decoration:none;">${lista.url}</a></td>
+        <td>
+          <button class="btn-edit" onclick="editarLista(${lista.id})">Editar</button>
+          <button class="btn-delete" onclick="removerLista(${lista.id})">Excluir</button>
+        </td>
+      `;
+      listasTabelaBody.appendChild(tr);
+    });
+  }
+
+  btnAddLista.onclick = () => {
+    listaIdInput.value = '';
+    nomeListaInput.value = '';
+    urlListaInput.value = '';
+    document.getElementById('modalTitulo').textContent = 'Adicionar Lista';
+    modalLista.style.display = 'flex';
+  };
+
+  btnCancelarLista.onclick = () => {
+    modalLista.style.display = 'none';
+  };
+
+  formLista.addEventListener('submit', e => {
+    e.preventDefault();
+    const id = listaIdInput.value;
+    const nome = nomeListaInput.value.trim();
+    const url = urlListaInput.value.trim();
+
+    if (!nome || !url) return alert('Preencha todos os campos!');
+
+    if (id) {
+      // Editar lista
+      const index = listas.findIndex(l => l.id == id);
+      if (index > -1) {
+        listas[index].nome = nome;
+        listas[index].url = url;
+      }
+    } else {
+      // Adicionar nova lista
+      const novoId = listas.length ? Math.max(...listas.map(l => l.id)) + 1 : 1;
+      listas.push({ id: novoId, nome, url });
+    }
+
+    modalLista.style.display = 'none';
+    carregarListas();
+  });
+
+  // Funções globais para editar e remover listas
+  window.editarLista = function(id) {
+    const lista = listas.find(l => l.id === id);
+    if (!lista) return;
+    listaIdInput.value = lista.id;
+    nomeListaInput.value = lista.nome;
+    urlListaInput.value = lista.url;
+    document.getElementById('modalTitulo').textContent = 'Editar Lista';
+    modalLista.style.display = 'flex';
+  };
+
+  window.removerLista = function(id) {
+    if (confirm('Tem certeza que deseja excluir esta lista?')) {
+      listas = listas.filter(l => l.id !== id);
+      carregarListas();
+    }
+  };
+</script>
+
+</body>
+</html>

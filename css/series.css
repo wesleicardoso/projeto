@@ -1,0 +1,165 @@
+body {
+    background-color: #141414;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+aside.categorias {
+    width: 250px;
+    background-color: #1c1c1c;
+    padding: 20px;
+    overflow-y: auto;
+    border-right: 1px solid #333;
+}
+
+aside h2 {
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+#categorias li {
+    list-style: none;
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+#categorias li:hover {
+    background-color: #e50914;
+}
+
+main.conteudo {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+#series li {
+    list-style: none;
+    background-color: #2a2a2a;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+#series li:hover {
+    transform: scale(1.05);
+    background-color: #e50914;
+    color: #fff;
+}
+
+#series img {
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+#info img, .temporada img {
+    width: 200px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+#episodes ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#episodes li {
+    margin-bottom: 5px;
+}
+
+.btn-assistir {
+    padding: 8px 12px;
+    background-color: #e50914;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-assistir:hover {
+    background-color: #ff1c1c;
+}
+
+
+
+#detalhes-section {
+    margin-top: 20px;
+}
+
+#temporada-select {
+    margin: 20px 0;
+}
+
+#seasonDropdown {
+    padding: 8px;
+    font-size: 16px;
+    background-color: #1c1c1c;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 4px;
+}
+
+
+.voltar {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .voltar-btn {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .voltar-btn a {
+    color: white;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .voltar-btn:hover {
+    background-color: #ff0000;
+    transform: scale(1.05);
+  }
+
+    #inputBusca {
+    width: 90%;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 6px;
+    border: 1px solid #444;
+    background-color: #2a2a2a;
+    color: #fff;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  #inputBusca:focus {
+    border-color: #ff3333;
+  }

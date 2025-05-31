@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/formulario.css">
+    <title>Cadastro de Usuário</title>
+</head>
+<body>
+    
+    <div class="caixas">
+    <form action="../backEnd/autenticar.php" method="POST">
+    <h2>Cadastro de Usuário</h2>
+        <input class="fm" type="text" name="name" id="name" required placeholder="Nome">
+        <input class="fm" type="email" name="email" id="email" required placeholder="E-Mail">
+        <input class="fm" type="password" name="senha" id="senha" required placeholder="Senha">
+        <input class="fm" type="text" name="cpf" id="cpf" required placeholder="CPF">
+        
+        <button class="botao" type="submit">Cadastrar</button>
+    </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProjetoFlix</title>
+    <link rel="stylesheet" href="../css/series.css">
+</head>
+
+
+
+<body>
+    <div class="container">
+        <aside class="categorias">
+            <h2>Categorias</h2>
+            <div>
+            <input type="text" id="inputBusca" placeholder="Buscar series..." oninput="buscarSeries()">
+        </div>
+            <ul id="categorias"></ul>
+             
+        </aside>
+       
+
+        <main class="conteudo">
+            <section id="series-section">
+                <h2>Séries</h2>
+                <ul id="series" class="cards-grid"></ul>
+            </section>
+
+            <section id="detalhes-section" style="display: none;">
+                <h2>Detalhes da Série</h2>
+                <div id="info"></div>
+
+                <div id="temporada-select">
+                    <label for="seasonDropdown">Escolha a Temporada:</label>
+                    <select id="seasonDropdown"></select>
+                </div>
+
+                <div id="episodes"></div>
+
+
+            </section>
+        </main>
+        <div class="voltar">
+            <button class="voltar-btn"><a href="../index.html">
+                    < </a></button>
+        </div>
+
+    </div>
+
+    <script src="../javascript/backEnd/modulo_series_data.js"></script>
+    <script src="../javascript/frontEnd/modulo_interacao_series.js"></script>
+</body>
