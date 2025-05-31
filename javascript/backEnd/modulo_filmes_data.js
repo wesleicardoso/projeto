@@ -12,7 +12,7 @@ carregarDados();
 
 
 
-
+//Carrega as categorias dos filmes
   
 async function buscarCategorias() {
     const res = await fetch('../backEnd/api.php?action=get_vod_categories');
@@ -21,13 +21,15 @@ async function buscarCategorias() {
 }
 
 
-
+//Carrega os filmes da categoria
 
 async function buscarFilmesPorCategoria(catId) {
     const res = await fetch(`../backEnd/api.php?action=get_vod_streams&category_id=${catId}`);
     return res.json();
 }
 
+
+//Gera link para assistir o filme
 function gerarUrlFilme(streamId) {    
     return `${painel}/movie/${usuario}/${senha}/${streamId}.mp4`;
     window.open(url, '_blank');
