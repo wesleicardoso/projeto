@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Redireciona /moduloFilmes/filmes.html para /filmes
+RewriteRule ^moduloFilmes/filmes\.html$ /filmes [R=301,L]
+
+# Remove .html das URLs
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^([^/]+)/?$ $1.html [L]
