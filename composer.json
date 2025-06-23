@@ -1,0 +1,15 @@
+{
+    "name": "gordo/projeto",
+    "autoload": {
+        "psr-4": {
+            "App\\Projeto\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "wesleicardoso",
+            "email": "150357484+wesleicardoso@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}

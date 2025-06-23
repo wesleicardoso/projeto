@@ -11,7 +11,7 @@ if (!isset($_POST['email']) || !isset($_POST['senha'])) {
 $email = $_POST['email'];
 $senha = $_POST['senha'];
 
-// Evita SQL Injection usando prepared statements
+// Select para consulta de dados
 $stmt = $conn->prepare("SELECT id, senha FROM usuarios WHERE email = ?");
 $stmt->bind_param("s", $email);
 $stmt->execute();
@@ -25,7 +25,7 @@ if ($result->num_rows === 1) {
         $_SESSION['id'] = $row['id'];
         $_SESSION['email'] = $email;
 
-        // Redireciona para painel protegido
+        // Redireciona para painel escolhido
         header('Location: ../index.html');
         exit;
     } else {
